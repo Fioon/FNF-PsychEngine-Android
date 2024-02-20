@@ -27,7 +27,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -82,10 +82,10 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['You Suck!', 0.2], //From 0% to 19%
-		['Shit', 0.4], //From 20% to 39%
+		['Fuck You', 0.2], //From 0% to 19%
+		['Big Shit', 0.4], //From 20% to 39%
 		['Bad', 0.5], //From 40% to 49%
-		['Bruh', 0.6], //From 50% to 59%
+		['What are you doing?!', 0.6], //From 50% to 59%
 		['Meh', 0.69], //From 60% to 68%
 		['Nice', 0.7], //69%
 		['Good', 0.8], //From 70% to 79%
@@ -2096,7 +2096,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 					case 1:
 						countdownReady = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-						countdownReady.cameras = [camHUD];
+						countdownReady.cameras = [camGame];
 						countdownReady.scrollFactor.set();
 						countdownReady.updateHitbox();
 
@@ -2117,7 +2117,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 					case 2:
 						countdownSet = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
-						countdownSet.cameras = [camHUD];
+						countdownSet.cameras = [camGame];
 						countdownSet.scrollFactor.set();
 
 						if (PlayState.isPixelStage)
@@ -2137,7 +2137,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 					case 3:
 						countdownGo = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-						countdownGo.cameras = [camHUD];
+						countdownGo.cameras = [camGame];
 						countdownGo.scrollFactor.set();
 
 						if (PlayState.isPixelStage)
@@ -2950,7 +2950,7 @@ class PlayState extends MusicBeatState
 
 		if(botplayTxt.visible) {
 			botplaySine += 180 * elapsed;
-			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
+			//botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
 		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
@@ -3991,7 +3991,7 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
-	public var showCombo:Bool = false;
+	public var showCombo:Bool = true;
 	public var showComboNum:Bool = true;
 	public var showRating:Bool = true;
 
@@ -4068,7 +4068,7 @@ class PlayState extends MusicBeatState
 		}
 
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
-		rating.cameras = [camHUD];
+		rating.cameras = [camGame];
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
@@ -4080,7 +4080,7 @@ class PlayState extends MusicBeatState
 		rating.y -= ClientPrefs.comboOffset[1];
 
 		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
-		comboSpr.cameras = [camHUD];
+		comboSpr.cameras = [camGame];
 		comboSpr.screenCenter();
 		comboSpr.x = coolText.x;
 		comboSpr.acceleration.y = FlxG.random.int(200, 300);
@@ -4127,7 +4127,7 @@ class PlayState extends MusicBeatState
 		for (i in seperatedScore)
 		{
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
-			numScore.cameras = [camHUD];
+			numScore.cameras = [camGame];
 			numScore.screenCenter();
 			numScore.x = coolText.x + (43 * daLoop) - 90;
 			numScore.y += 80;
