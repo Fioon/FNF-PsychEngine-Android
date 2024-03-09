@@ -86,7 +86,8 @@ class Main extends Sprite
 		zoom = 1;
 		
 		ClientPrefs.loadDefaultKeys();
-                addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, updateFramerate, framerate, skipSplash));
+                //addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, updateFramerate, framerate, skipSplash));
+		addChild(new FlxGame(gameWidth, gameHeight, initialState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
